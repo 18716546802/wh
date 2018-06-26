@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T12Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T12" >
+    <id column="F1201" property="f1201" jdbcType="INTEGER" />
+    <result column="F1202" property="f1202" jdbcType="NVARCHAR" />
+    <result column="F1204" property="f1204" jdbcType="DATE" />
+    <result column="F1205" property="f1205" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wh.model.T12" extends="BaseResultMap" >
+    <result column="F1203" property="f1203" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F1201, F1202, F1204, F1205
+  </sql>
+  <sql id="Blob_Column_List" >
+    F1203
+  </sql>
+  <select id="selectT12" resultMap="ResultMapWithBLOBs">
+     select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T12
+   	order by F1201 desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T12
+    where F1201 = #{f1201,jdbcType=INTEGER}	order by F1201 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T12
+    where F1201 = #{f1201,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T12" >
+    insert into T12 (F1201, F1202, F1204, 
+      F1205, F1203)
+    values (#{f1201,jdbcType=INTEGER}, #{f1202,jdbcType=NVARCHAR}, #{f1204,jdbcType=DATE}, 
+      #{f1205,jdbcType=NVARCHAR}, #{f1203,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T12" >
+    insert into T12
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f1201 != null" >
+        F1201,
+      </if>
+      <if test="f1202 != null" >
+        F1202,
+      </if>
+      <if test="f1204 != null" >
+        F1204,
+      </if>
+      <if test="f1205 != null" >
+        F1205,
+      </if>
+      <if test="f1203 != null" >
+        F1203,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f1201 != null" >
+        #{f1201,jdbcType=INTEGER},
+      </if>
+      <if test="f1202 != null" >
+        #{f1202,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1204 != null" >
+        #{f1204,jdbcType=DATE},
+      </if>
+      <if test="f1205 != null" >
+        #{f1205,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1203 != null" >
+        #{f1203,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T12" >
+    update T12
+    <set >
+      <if test="f1202 != null" >
+        F1202 = #{f1202,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1204 != null" >
+        F1204 = #{f1204,jdbcType=DATE},
+      </if>
+      <if test="f1205 != null" >
+        F1205 = #{f1205,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1203 != null" >
+        F1203 = #{f1203,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where F1201 = #{f1201,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wh.model.T12" >
+    update T12
+    set F1202 = #{f1202,jdbcType=NVARCHAR},
+      F1204 = #{f1204,jdbcType=DATE},
+      F1205 = #{f1205,jdbcType=NVARCHAR},
+      F1203 = #{f1203,jdbcType=LONGVARCHAR}
+    where F1201 = #{f1201,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T12" >
+    update T12
+    set F1202 = #{f1202,jdbcType=NVARCHAR},
+      F1204 = #{f1204,jdbcType=DATE},
+      F1205 = #{f1205,jdbcType=NVARCHAR}
+    where F1201 = #{f1201,jdbcType=INTEGER}
+  </update>
+</mapper>

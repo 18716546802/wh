@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T10Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T10" >
+    <id column="F1001" property="f1001" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F1002" property="f1002" jdbcType="NVARCHAR" />
+    <result column="F1003" property="f1003" jdbcType="DATE" />
+    <result column="F1004" property="f1004" jdbcType="NVARCHAR" />
+    <result column="F1005" property="f1005" jdbcType="NVARCHAR" />
+    <result column="F1006" property="f1006" jdbcType="NVARCHAR" />
+    <result column="F1007" property="f1007" jdbcType="INTEGER" />
+    <result column="F1008" property="f1008" jdbcType="NVARCHAR" />
+    <result column="F1009" property="f1009" jdbcType="DATE" />
+    <result column="F1010" property="f1010" jdbcType="TIMESTAMP" />
+    <association property="t01" column="F0101"
+    	 javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey" >
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F1001, F0101, F1002, F1003, F1004, F1005, F1006, F1007, F1008, F1009, F1010
+  </sql>
+  <select id="findByF0101AndF1007" resultMap="BaseResultMap">
+                    	select 
+    <include refid="Base_Column_List" />
+    from T10
+    where F0101 = #{0} and F1007 = #{1}
+  </select>
+  <select id="findByF1007" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+              	select 
+    <include refid="Base_Column_List" />
+    from T10
+    where F1007 = #{f1007,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="selectAllRemindByCom" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        	select 
+    <include refid="Base_Column_List" />
+    from T10
+    where F0101 = #{f0101,jdbcType=INTEGER} and F1008 = '未处理'	order by F1001 desc
+  </select>
+  <select id="selectAllRemindByComType" resultMap="BaseResultMap" parameterType="com.wh.model.T10">
+    select 
+    <include refid="Base_Column_List" />
+    from T10
+    where F0101 = #{f0101,jdbcType=INTEGER} and F1002 = #{f1002,jdbcType=NVARCHAR} and F1008 = '未处理'	order by F1001 desc
+  </select>
+  <select id="selectRemindByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T10
+    where F1001 = #{f1001,jdbcType=INTEGER}	order by F1001 desc
+  </select>
+  
+  <select id="selectAllRemind"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select 
+    <include refid="Base_Column_List" />
+    from T10 where F1008 = '未处理'	order by F1001 desc
+  </select>
+ 	<select id="selectListRemindnByEnterprise"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select 
+    <include refid="Base_Column_List" />
+    from T10 where F0101 = #{f0101,jdbcType=INTEGER} and F1008 = '未处理'	order by F1001 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T10
+    where F1001 = #{f1001,jdbcType=INTEGER}
+  </delete>
+  
+    <delete id="deleteByF1007" parameterType="java.lang.Integer" >
+    delete from T10
+    where F1007 = #{f1007,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByF0101AndF1007">
+          delete from T10
+    where F0101 = #{0} and F1007 = #{1}
+  </delete>
+    <insert id="insertNoId" parameterType="com.wh.model.T10">
+        insert into T10
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f1002 != null" >
+        F1002,
+      </if>
+      <if test="f1003 != null" >
+        F1003,
+      </if>
+      <if test="f1004 != null" >
+        F1004,
+      </if>
+      <if test="f1006 != null" >
+        F1006,
+      </if>
+      <if test="f1007 != null" >
+        F1007,
+      </if>
+      <if test="f1008 != null" >
+        F1008,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f1002 != null" >
+        #{f1002,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1003 != null" >
+        #{f1003,jdbcType=DATE},
+      </if>
+      <if test="f1004 != null" >
+        #{f1004,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1006 != null" >
+        #{f1006,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1007 != null" >
+        #{f1007,jdbcType=INTEGER},
+      </if>
+      <if test="f1008 != null" >
+        #{f1008,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+    </insert>
+  <insert id="insert" parameterType="com.wh.model.T10" >
+    insert into T10 (F1001, F0101, F1002, 
+      F1003, F1004, F1005, 
+      F1006, F1007, F1008, 
+      F1009, F1010)
+    values (#{f1001,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f1002,jdbcType=NVARCHAR}, 
+      #{f1003,jdbcType=DATE}, #{f1004,jdbcType=NVARCHAR}, #{f1005,jdbcType=NVARCHAR}, 
+      #{f1006,jdbcType=NVARCHAR}, #{f1007,jdbcType=INTEGER}, #{f1008,jdbcType=NVARCHAR}, 
+      #{f1009,jdbcType=DATE}, #{f1010,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T10"  useGeneratedKeys="true" keyProperty="f1001">
+    insert into T10
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f1001 != null" >
+        F1001,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f1002 != null" >
+        F1002,
+      </if>
+      <if test="f1003 != null" >
+        F1003,
+      </if>
+      <if test="f1004 != null" >
+        F1004,
+      </if>
+      <if test="f1005 != null" >
+        F1005,
+      </if>
+      <if test="f1006 != null" >
+        F1006,
+      </if>
+      <if test="f1007 != null" >
+        F1007,
+      </if>
+      <if test="f1008 != null" >
+        F1008,
+      </if>
+      <if test="f1009 != null" >
+        F1009,
+      </if>
+      <if test="f1010 != null" >
+        F1010,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f1001 != null" >
+        #{f1001,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f1002 != null" >
+        #{f1002,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1003 != null" >
+        #{f1003,jdbcType=DATE},
+      </if>
+      <if test="f1004 != null" >
+        #{f1004,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1005 != null" >
+        #{f1005,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1006 != null" >
+        #{f1006,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1007 != null" >
+        #{f1007,jdbcType=INTEGER},
+      </if>
+      <if test="f1008 != null" >
+        #{f1008,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1009 != null" >
+        #{f1009,jdbcType=DATE},
+      </if>
+      <if test="f1010 != null" >
+        #{f1010,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByF1007" parameterType="com.wh.model.T10" >
+          update T10
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f1002 != null" >
+        F1002 = #{f1002,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1003 != null" >
+        F1003 = #{f1003,jdbcType=DATE},
+      </if>
+      <if test="f1004 != null" >
+        F1004 = #{f1004,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1005 != null" >
+        F1005 = #{f1005,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1006 != null" >
+        F1006 = #{f1006,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1008 != null" >
+        F1008 = #{f1008,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1009 != null" >
+        F1009 = #{f1009,jdbcType=DATE},
+      </if>
+      <if test="f1010 != null" >
+        F1010 = #{f1010,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where F1007 = #{f1007,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T10" >
+    update T10
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f1002 != null" >
+        F1002 = #{f1002,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1003 != null" >
+        F1003 = #{f1003,jdbcType=DATE},
+      </if>
+      <if test="f1004 != null" >
+        F1004 = #{f1004,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1005 != null" >
+        F1005 = #{f1005,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1006 != null" >
+        F1006 = #{f1006,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1007 != null" >
+        F1007 = #{f1007,jdbcType=INTEGER},
+      </if>
+      <if test="f1008 != null" >
+        F1008 = #{f1008,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1009 != null" >
+        F1009 = #{f1009,jdbcType=DATE},
+      </if>
+      <if test="f1010 != null" >
+        F1010 = #{f1010,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where F1001 = #{f1001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T10" >
+    update T10
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F1002 = #{f1002,jdbcType=NVARCHAR},
+      F1003 = #{f1003,jdbcType=DATE},
+      F1004 = #{f1004,jdbcType=NVARCHAR},
+      F1005 = #{f1005,jdbcType=NVARCHAR},
+      F1006 = #{f1006,jdbcType=NVARCHAR},
+      F1007 = #{f1007,jdbcType=INTEGER},
+      F1008 = #{f1008,jdbcType=NVARCHAR},
+      F1009 = #{f1009,jdbcType=DATE},
+      F1010 = #{f1010,jdbcType=TIMESTAMP}
+    where F1001 = #{f1001,jdbcType=INTEGER}
+  </update>
+</mapper>

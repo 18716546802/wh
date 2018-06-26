@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T09Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T09" >
+    <id column="F0901" property="f0901" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F0902" property="f0902" jdbcType="NVARCHAR" />
+    <result column="F0903" property="f0903" jdbcType="NVARCHAR" />
+    <result column="F0904" property="f0904" jdbcType="NVARCHAR" />
+    <result column="F0905" property="f0905" jdbcType="NVARCHAR" />
+    <result column="F0906" property="f0906" jdbcType="NVARCHAR" />
+    <result column="F0907" property="f0907" jdbcType="NVARCHAR" />
+    <association property="t01" column="F0101"
+    	 javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey" >
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0901, F0101, F0902, F0903, F0904, F0905, F0906, F0907
+  </sql>
+ 
+  <select id="findQUANJUFile" resultMap="BaseResultMap">
+            select <include refid="Base_Column_List"></include> from T09 
+      where  F0907 = '全局文件'      order by F0901 desc
+  </select>
+  
+  <select id="findLowByComAndType" resultMap="BaseResultMap" parameterType="com.wh.model.T09">
+      select <include refid="Base_Column_List"></include> from T09 
+      where  F0101 = #{f0101,jdbcType=INTEGER} and F0905 = #{f0905,jdbcType=NVARCHAR}
+      order by F0901 desc
+  </select>
+  
+   <select id="findLowByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select <include refid="Base_Column_List"></include> from T09 
+      where F0905 = #{f0905,jdbcType=NVARCHAR}
+      order by F0901 desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T09
+    where F0901 = #{f0901,jdbcType=INTEGER}	order by F0901 desc
+  </select>
+  <select id="selectAllT09" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select 
+    <include refid="Base_Column_List" />
+    from T09	order by F0901 desc
+  </select>
+ 
+  <select id="selectListLowByEnterpriseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select 
+    <include refid="Base_Column_List" />
+   	 from T09 where F0101 = #{f0101,jdbcType=INTEGER}	order by F0901 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T09
+    where F0901 = #{f0901,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T09" useGeneratedKeys="true" keyProperty="f0901">
+    insert into T09 (F0901, F0101, F0902, 
+      F0903, F0904, F0905, 
+      F0906, F0907)
+    values (#{f0901,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f0902,jdbcType=NVARCHAR}, 
+      #{f0903,jdbcType=NVARCHAR}, #{f0904,jdbcType=NVARCHAR}, #{f0905,jdbcType=NVARCHAR}, 
+      #{f0906,jdbcType=NVARCHAR}, #{f0907,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T09" useGeneratedKeys="true" keyProperty="f0901" >
+    insert into T09
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0901 != null" >
+        F0901,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f0902 != null" >
+        F0902,
+      </if>
+      <if test="f0903 != null" >
+        F0903,
+      </if>
+      <if test="f0904 != null" >
+        F0904,
+      </if>
+      <if test="f0905 != null" >
+        F0905,
+      </if>
+      <if test="f0906 != null" >
+        F0906,
+      </if>
+      <if test="f0907 != null" >
+        F0907,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0901 != null" >
+        #{f0901,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0902 != null" >
+        #{f0902,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0903 != null" >
+        #{f0903,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0904 != null" >
+        #{f0904,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0905 != null" >
+        #{f0905,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0906 != null" >
+        #{f0906,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0907 != null" >
+        #{f0907,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T09" >
+    update T09
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0902 != null" >
+        F0902 = #{f0902,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0903 != null" >
+        F0903 = #{f0903,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0904 != null" >
+        F0904 = #{f0904,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0905 != null" >
+        F0905 = #{f0905,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0906 != null" >
+        F0906 = #{f0906,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0907 != null" >
+        F0907 = #{f0907,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where F0901 = #{f0901,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T09" >
+    update T09
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F0902 = #{f0902,jdbcType=NVARCHAR},
+      F0903 = #{f0903,jdbcType=NVARCHAR},
+      F0904 = #{f0904,jdbcType=NVARCHAR},
+      F0905 = #{f0905,jdbcType=NVARCHAR},
+      F0906 = #{f0906,jdbcType=NVARCHAR},
+      F0907 = #{f0907,jdbcType=NVARCHAR}
+    where F0901 = #{f0901,jdbcType=INTEGER}
+  </update>
+</mapper>

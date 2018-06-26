@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T07Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T07" >
+    <id column="F0701" property="f0701" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F0702" property="f0702" jdbcType="NVARCHAR" />
+    <result column="F0703" property="f0703" jdbcType="NVARCHAR" />
+    <result column="F0704" property="f0704" jdbcType="DATE" />
+    <result column="F0705" property="f0705" jdbcType="NVARCHAR" />
+    <result column="F0706" property="f0706" jdbcType="NVARCHAR" />
+    <result column="F0707" property="f0707" jdbcType="VARCHAR" />
+    <result column="F0708" property="f0708" jdbcType="VARCHAR" />
+    <association property="t01" column="F0101"
+    	javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey" >
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0701, F0101, F0702, F0703, F0704, F0705, F0706, F0707, F0708
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T07
+    where F0701 = #{f0701,jdbcType=INTEGER}	order by F0701 desc
+  </select>
+
+  <select id="selectAllQualifications" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T07	order by F0701 desc
+  </select>
+  <select id="selectListQualificationsByEnterpriseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T07 where F0101 = #{f0101,jdbcType=INTEGER}	order by F0701 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T07
+    where F0701 = #{f0701,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T07" >
+    insert into T07 (F0701, F0101, F0702, 
+      F0703, F0704, F0705, 
+      F0706, F0707, F0708
+      )
+    values (#{f0701,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f0702,jdbcType=NVARCHAR}, 
+      #{f0703,jdbcType=NVARCHAR}, #{f0704,jdbcType=DATE}, #{f0705,jdbcType=NVARCHAR}, 
+      #{f0706,jdbcType=NVARCHAR}, #{f0707,jdbcType=VARCHAR}, #{f0708,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T07" keyProperty="f0701" useGeneratedKeys="true">
+    insert into T07
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0701 != null" >
+        F0701,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f0702 != null" >
+        F0702,
+      </if>
+      <if test="f0703 != null" >
+        F0703,
+      </if>
+      <if test="f0704 != null" >
+        F0704,
+      </if>
+      <if test="f0705 != null" >
+        F0705,
+      </if>
+      <if test="f0706 != null" >
+        F0706,
+      </if>
+      <if test="f0707 != null" >
+        F0707,
+      </if>
+      <if test="f0708 != null" >
+        F0708,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0701 != null" >
+        #{f0701,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0702 != null" >
+        #{f0702,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0703 != null" >
+        #{f0703,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0704 != null" >
+        #{f0704,jdbcType=DATE},
+      </if>
+      <if test="f0705 != null" >
+        #{f0705,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0706 != null" >
+        #{f0706,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0707 != null" >
+        #{f0707,jdbcType=VARCHAR},
+      </if>
+      <if test="f0708 != null" >
+        #{f0708,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T07" >
+    update T07
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0702 != null" >
+        F0702 = #{f0702,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0703 != null" >
+        F0703 = #{f0703,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0704 != null" >
+        F0704 = #{f0704,jdbcType=DATE},
+      </if>
+      <if test="f0705 != null" >
+        F0705 = #{f0705,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0706 != null" >
+        F0706 = #{f0706,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0707 != null" >
+        F0707 = #{f0707,jdbcType=VARCHAR},
+      </if>
+      <if test="f0708 != null" >
+        F0708 = #{f0708,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F0701 = #{f0701,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T07" >
+    update T07
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F0702 = #{f0702,jdbcType=NVARCHAR},
+      F0703 = #{f0703,jdbcType=NVARCHAR},
+      F0704 = #{f0704,jdbcType=DATE},
+      F0705 = #{f0705,jdbcType=NVARCHAR},
+      F0706 = #{f0706,jdbcType=NVARCHAR},
+      F0707 = #{f0707,jdbcType=VARCHAR},
+      F0708 = #{f0708,jdbcType=VARCHAR}
+    where F0701 = #{f0701,jdbcType=INTEGER}
+  </update>
+</mapper>

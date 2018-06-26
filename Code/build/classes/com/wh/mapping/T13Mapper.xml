@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T13Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T13" >
+    <id column="F1301" property="f1301" jdbcType="INTEGER" />
+    <result column="F1302" property="f1302" jdbcType="NVARCHAR" />
+    <result column="F1304" property="f1304" jdbcType="INTEGER" />
+    <result column="F1305" property="f1305" jdbcType="INTEGER" />
+    <result column="F1306" property="f1306" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F1301, F1302, F1304, F1305, F1306
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T13
+    where F1301 = #{f1301,jdbcType=INTEGER}	order by F1301 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T13
+    where F1301 = #{f1301,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T13" >
+    insert into T13 (F1301, F1302, F1304, 
+      F1305, F1306)
+    values (#{f1301,jdbcType=INTEGER}, #{f1302,jdbcType=NVARCHAR}, #{f1304,jdbcType=INTEGER}, 
+      #{f1305,jdbcType=INTEGER}, #{f1306,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T13" >
+    insert into T13
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f1301 != null" >
+        F1301,
+      </if>
+      <if test="f1302 != null" >
+        F1302,
+      </if>
+      <if test="f1304 != null" >
+        F1304,
+      </if>
+      <if test="f1305 != null" >
+        F1305,
+      </if>
+      <if test="f1306 != null" >
+        F1306,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f1301 != null" >
+        #{f1301,jdbcType=INTEGER},
+      </if>
+      <if test="f1302 != null" >
+        #{f1302,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1304 != null" >
+        #{f1304,jdbcType=INTEGER},
+      </if>
+      <if test="f1305 != null" >
+        #{f1305,jdbcType=INTEGER},
+      </if>
+      <if test="f1306 != null" >
+        #{f1306,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T13" >
+    update T13
+    <set >
+      <if test="f1302 != null" >
+        F1302 = #{f1302,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1304 != null" >
+        F1304 = #{f1304,jdbcType=INTEGER},
+      </if>
+      <if test="f1305 != null" >
+        F1305 = #{f1305,jdbcType=INTEGER},
+      </if>
+      <if test="f1306 != null" >
+        F1306 = #{f1306,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where F1301 = #{f1301,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T13" >
+    update T13
+    set F1302 = #{f1302,jdbcType=NVARCHAR},
+      F1304 = #{f1304,jdbcType=INTEGER},
+      F1305 = #{f1305,jdbcType=INTEGER},
+      F1306 = #{f1306,jdbcType=NVARCHAR}
+    where F1301 = #{f1301,jdbcType=INTEGER}
+  </update>
+</mapper>

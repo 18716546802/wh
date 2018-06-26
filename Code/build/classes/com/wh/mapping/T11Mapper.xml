@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T11Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T11" >
+    <id column="F1101" property="f1101" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F1102" property="f1102" jdbcType="NVARCHAR" />
+    <result column="F1103" property="f1103" jdbcType="NVARCHAR" />
+    <result column="F1104" property="f1104" jdbcType="DATE" />
+    <result column="F1105" property="f1105" jdbcType="NVARCHAR" />
+    <result column="F1106" property="f1106" jdbcType="NVARCHAR" />
+    <result column="F1107" property="f1107" jdbcType="NVARCHAR" />
+    <result column="F1108" property="f1108" jdbcType="NVARCHAR" />
+    <result column="F1109" property="f1109" jdbcType="NVARCHAR" />
+    <result column="F1110" property="f1110" jdbcType="NVARCHAR" />
+    <result column="F1112" property="f1112" jdbcType="NVARCHAR" />
+    <result column="F1113" property="f1113" jdbcType="NVARCHAR" />
+    <result column="F1114" property="f1114" jdbcType="NVARCHAR" />
+    <result column="F1115" property="f1115" jdbcType="NVARCHAR" />
+    <result column="F1116" property="f1116" jdbcType="NVARCHAR" />
+    <result column="F1117" property="f1117" jdbcType="VARCHAR" />
+    <association property="t01" column="F0101"
+    	 javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey" >
+    </association>
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.wh.model.T11" >
+    <id column="F1101" property="f1101" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F1102" property="f1102" jdbcType="NVARCHAR" />
+    <result column="F1103" property="f1103" jdbcType="NVARCHAR" />
+    <result column="F1104" property="f1104" jdbcType="DATE" />
+    <result column="F1105" property="f1105" jdbcType="NVARCHAR" />
+    <result column="F1106" property="f1106" jdbcType="NVARCHAR" />
+    <result column="F1107" property="f1107" jdbcType="NVARCHAR" />
+    <result column="F1108" property="f1108" jdbcType="NVARCHAR" />
+    <result column="F1109" property="f1109" jdbcType="NVARCHAR" />
+    <result column="F1110" property="f1110" jdbcType="NVARCHAR" />
+    <result column="F1112" property="f1112" jdbcType="NVARCHAR" />
+    <result column="F1113" property="f1113" jdbcType="NVARCHAR" />
+    <result column="F1114" property="f1114" jdbcType="NVARCHAR" />
+    <result column="F1115" property="f1115" jdbcType="NVARCHAR" />
+    <result column="F1116" property="f1116" jdbcType="NVARCHAR" />
+    <result column="F1117" property="f1117" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F1101, F0101, F1102, F1103, F1104, F1105, F1106, F1107, F1108, F1109, F1110, F1112, 
+    F1113, F1114, F1115, F1116, F1117
+  </sql>
+  
+  <select id="selectAllDangerByCom" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+          select 
+    <include refid="Base_Column_List" />
+    from T11
+    where F0101 = #{f0101,jdbcType=INTEGER}	order by F1101 desc
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T11
+    where F1101 = #{f1101,jdbcType=INTEGER}	order by F1101 desc
+  </select>
+  <select id="selectDangerlist" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select
+  	<include refid="Base_Column_List" />
+  		from T11	order by F1101 desc
+  </select>
+  <select id="selectListDangByEnterpriseId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select
+  	<include refid="Base_Column_List" />
+  		from T11 where F0101 = #{f0101,jdbcType=INTEGER}	order by F1101 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T11
+    where F1101 = #{f1101,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T11" >
+    insert into T11 (F1101, F0101, F1102, 
+      F1103, F1104, F1105, 
+      F1106, F1107, F1108, 
+      F1109, F1110, F1112, 
+      F1113, F1114, F1115, 
+      F1116, F1117)
+    values (#{f1101,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f1102,jdbcType=NVARCHAR}, 
+      #{f1103,jdbcType=NVARCHAR}, #{f1104,jdbcType=DATE}, #{f1105,jdbcType=NVARCHAR}, 
+      #{f1106,jdbcType=NVARCHAR}, #{f1107,jdbcType=NVARCHAR}, #{f1108,jdbcType=NVARCHAR}, 
+      #{f1109,jdbcType=NVARCHAR}, #{f1110,jdbcType=NVARCHAR}, #{f1112,jdbcType=NVARCHAR}, 
+      #{f1113,jdbcType=NVARCHAR}, #{f1114,jdbcType=NVARCHAR}, #{f1115,jdbcType=NVARCHAR}, 
+      #{f1116,jdbcType=NVARCHAR}, #{f1117,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T11" useGeneratedKeys="true" keyProperty="f1101">
+    insert into T11
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f1101 != null" >
+        F1101,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f1102 != null" >
+        F1102,
+      </if>
+      <if test="f1103 != null" >
+        F1103,
+      </if>
+      <if test="f1104 != null" >
+        F1104,
+      </if>
+      <if test="f1105 != null" >
+        F1105,
+      </if>
+      <if test="f1106 != null" >
+        F1106,
+      </if>
+      <if test="f1107 != null" >
+        F1107,
+      </if>
+      <if test="f1108 != null" >
+        F1108,
+      </if>
+      <if test="f1109 != null" >
+        F1109,
+      </if>
+      <if test="f1110 != null" >
+        F1110,
+      </if>
+      <if test="f1112 != null" >
+        F1112,
+      </if>
+      <if test="f1113 != null" >
+        F1113,
+      </if>
+      <if test="f1114 != null" >
+        F1114,
+      </if>
+      <if test="f1115 != null" >
+        F1115,
+      </if>
+      <if test="f1116 != null" >
+        F1116,
+      </if>
+      <if test="f1117 != null" >
+        F1117,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f1101 != null" >
+        #{f1101,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f1102 != null" >
+        #{f1102,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1103 != null" >
+        #{f1103,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1104 != null" >
+        #{f1104,jdbcType=DATE},
+      </if>
+      <if test="f1105 != null" >
+        #{f1105,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1106 != null" >
+        #{f1106,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1107 != null" >
+        #{f1107,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1108 != null" >
+        #{f1108,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1109 != null" >
+        #{f1109,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1110 != null" >
+        #{f1110,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1112 != null" >
+        #{f1112,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1113 != null" >
+        #{f1113,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1114 != null" >
+        #{f1114,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1115 != null" >
+        #{f1115,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1116 != null" >
+        #{f1116,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1117 != null" >
+        #{f1117,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T11" >
+    update T11
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f1102 != null" >
+        F1102 = #{f1102,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1103 != null" >
+        F1103 = #{f1103,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1104 != null" >
+        F1104 = #{f1104,jdbcType=DATE},
+      </if>
+      <if test="f1105 != null" >
+        F1105 = #{f1105,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1106 != null" >
+        F1106 = #{f1106,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1107 != null" >
+        F1107 = #{f1107,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1108 != null" >
+        F1108 = #{f1108,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1109 != null" >
+        F1109 = #{f1109,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1110 != null" >
+        F1110 = #{f1110,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1112 != null" >
+        F1112 = #{f1112,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1113 != null" >
+        F1113 = #{f1113,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1114 != null" >
+        F1114 = #{f1114,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1115 != null" >
+        F1115 = #{f1115,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1116 != null" >
+        F1116 = #{f1116,jdbcType=NVARCHAR},
+      </if>
+      <if test="f1117 != null" >
+        F1117 = #{f1117,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F1101 = #{f1101,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T11" >
+    update T11
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F1102 = #{f1102,jdbcType=NVARCHAR},
+      F1103 = #{f1103,jdbcType=NVARCHAR},
+      F1104 = #{f1104,jdbcType=DATE},
+      F1105 = #{f1105,jdbcType=NVARCHAR},
+      F1106 = #{f1106,jdbcType=NVARCHAR},
+      F1107 = #{f1107,jdbcType=NVARCHAR},
+      F1108 = #{f1108,jdbcType=NVARCHAR},
+      F1109 = #{f1109,jdbcType=NVARCHAR},
+      F1110 = #{f1110,jdbcType=NVARCHAR},
+      F1112 = #{f1112,jdbcType=NVARCHAR},
+      F1113 = #{f1113,jdbcType=NVARCHAR},
+      F1114 = #{f1114,jdbcType=NVARCHAR},
+      F1115 = #{f1115,jdbcType=NVARCHAR},
+      F1116 = #{f1116,jdbcType=NVARCHAR},
+      F1117 = #{f1117,jdbcType=VARCHAR}
+    where F1101 = #{f1101,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T08Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T08" >
+    <id column="F0801" property="f0801" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F0802" property="f0802" jdbcType="NVARCHAR" />
+    <result column="F0803" property="f0803" jdbcType="NVARCHAR" />
+    <result column="F0804" property="f0804" jdbcType="NVARCHAR" />
+    <result column="F0805" property="f0805" jdbcType="NVARCHAR" />
+    <result column="F0806" property="f0806" jdbcType="NVARCHAR" />
+    <result column="F0807" property="f0807" jdbcType="NVARCHAR" />
+    <result column="F0808" property="f0808" jdbcType="NVARCHAR" />
+    <result column="F0809" property="f0809" jdbcType="NVARCHAR" />
+    <result column="F0810" property="f0810" jdbcType="INTEGER" />
+    <result column="F0811" property="f0811" jdbcType="DATE" />
+    <result column="F0812" property="f0812" jdbcType="DATE" />
+    <result column="F0813" property="f0813" jdbcType="VARCHAR" />
+    <result column="F0814" property="f0814" jdbcType="VARCHAR" />
+    <result column="F0815" property="f0815" jdbcType="VARCHAR" />
+    <result column="F0816" property="f0816" jdbcType="VARCHAR" />
+    <result column="F0817" property="f0817" jdbcType="VARCHAR" />
+    <result column="F0818" property="f0818" jdbcType="VARCHAR" />
+    <result column="F0819" property="f0819" jdbcType="NVARCHAR" />
+    <result column="F0820" property="f0820" jdbcType="VARCHAR" />
+    <result column="F1101" property="f1101" jdbcType="INTEGER" />
+    <association property="t01" column="F0101"
+    	javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey">
+    </association>
+    <association property="t11" column="F1101"
+     	javaType="com.wh.model.T11" select="com.wh.dao.T11Mapper.selectByPrimaryKey">
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0801, F0101, F0802, F0803, F0804, F0805, F0806, F0807, F0808, F0809, F0810, F0811, 
+    F0812, F0813, F0814, F0815, F0816, F0817, F0818, F0819, F0820, F1101
+  </sql>
+  
+  <select id="selectTodayPurkingPeril" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select <include refid="Base_Column_List" />
+      from T08
+      where F0811 = #{f0811}	order by F0801 desc
+  </select>
+  
+  <select id="selectT08Byf0101Type" resultMap="BaseResultMap" parameterType="com.wh.model.T08">
+      select <include refid="Base_Column_List" />
+      from T08
+      where F0101 = #{f0101,jdbcType=INTEGER} and F0820 = #{f0820,jdbcType=VARCHAR} and F0804 != '已确认' order by F0801 desc
+  </select>
+  
+    <select id="selectT08ByType" resultMap="BaseResultMap" parameterType="com.wh.model.T08">
+      select <include refid="Base_Column_List" />
+      from T08
+      where F0820 = #{f0820,jdbcType=VARCHAR} and F0804 != '已确认' order by F0801 desc
+  </select>
+  
+  
+  <select id="selectT08Byf0101" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T08
+    where F0101 = #{f0101,jdbcType=INTEGER} and F0804 != '已确认'	order by F0801 desc
+  </select>
+  
+ <select id="seletNewPurkingPeril" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+	from T08 
+    where F0101 =#{f0101,jdbcType=INTEGER}  and F0804 in 
+    (
+		select F0804 from T08 where F0804='未整改' or  F0804='已整改'
+    ) order by F0801 desc
+  </select>
+  <select id="selectSurePurkingPeril" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+	from T08 
+    where F0101 =#{f0101,jdbcType=INTEGER}  and F0804 = '已确认' order by F0801 desc
+  </select>
+  <select id="selectT08" resultMap="BaseResultMap" >
+      select <include refid="Base_Column_List" />
+      from T08 where F0804 != '已确认'	order by F0801 desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T08
+    where F0801 = #{f0801,jdbcType=INTEGER}	order by F0801 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T08
+    where F0801 = #{f0801,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T08" >
+    insert into T08 (F0801, F0101, F0802, 
+      F0803, F0804, F0805, 
+      F0806, F0807, F0808, 
+      F0809, F0810, F0811, 
+      F0812, F0813, F0814, F0815, 
+      F0816, F0817, F0818, 
+      F0819, F0820, F1101
+      )
+    values (#{f0801,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f0802,jdbcType=NVARCHAR}, 
+      #{f0803,jdbcType=NVARCHAR}, #{f0804,jdbcType=NVARCHAR}, #{f0805,jdbcType=NVARCHAR}, 
+      #{f0806,jdbcType=NVARCHAR}, #{f0807,jdbcType=NVARCHAR}, #{f0808,jdbcType=NVARCHAR}, 
+      #{f0809,jdbcType=NVARCHAR}, #{f0810,jdbcType=INTEGER}, #{f0811,jdbcType=DATE}, 
+      #{f0812,jdbcType=DATE}, #{f0813,jdbcType=VARCHAR}, #{f0814,jdbcType=VARCHAR}, #{f0815,jdbcType=VARCHAR}, 
+      #{f0816,jdbcType=VARCHAR}, #{f0817,jdbcType=VARCHAR}, #{f0818,jdbcType=VARCHAR}, 
+      #{f0819,jdbcType=NVARCHAR}, #{f0820,jdbcType=VARCHAR}, #{f1101,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T08" useGeneratedKeys="true" keyProperty="f0801">
+  	
+    insert into T08
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0801 != null" >
+        F0801,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f0802 != null" >
+        F0802,
+      </if>
+      <if test="f0803 != null" >
+        F0803,
+      </if>
+      <if test="f0804 != null" >
+        F0804,
+      </if>
+      <if test="f0805 != null" >
+        F0805,
+      </if>
+      <if test="f0806 != null" >
+        F0806,
+      </if>
+      <if test="f0807 != null" >
+        F0807,
+      </if>
+      <if test="f0808 != null" >
+        F0808,
+      </if>
+      <if test="f0809 != null" >
+        F0809,
+      </if>
+      <if test="f0810 != null" >
+        F0810,
+      </if>
+      <if test="f0811 != null" >
+        F0811,
+      </if>
+      <if test="f0812 != null" >
+        F0812,
+      </if>
+      <if test="f0813 != null" >
+        F0813,
+      </if>
+      <if test="f0814 != null" >
+        F0814,
+      </if>
+      <if test="f0815 != null" >
+        F0815,
+      </if>
+      <if test="f0816 != null" >
+        F0816,
+      </if>
+      <if test="f0817 != null" >
+        F0817,
+      </if>
+      <if test="f0818 != null" >
+        F0818,
+      </if>
+      <if test="f0819 != null" >
+        F0819,
+      </if>
+      <if test="f0820 != null" >
+        F0820,
+      </if>
+      <if test="f1101 != null" >
+        F1101,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="f0801 != null" >
+        #{f0801,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0802 != null" >
+        #{f0802,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0803 != null" >
+        #{f0803,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0804 != null" >
+        #{f0804,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0805 != null" >
+        #{f0805,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0806 != null" >
+        #{f0806,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0807 != null" >
+        #{f0807,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0808 != null" >
+        #{f0808,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0809 != null" >
+        #{f0809,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0810 != null" >
+        #{f0810,jdbcType=INTEGER},
+      </if>
+      <if test="f0811 != null" >
+        #{f0811,jdbcType=DATE},
+      </if>
+      <if test="f0812 != null" >
+        #{f0812,jdbcType=DATE},
+      </if>
+      <if test="f0813 != null" >
+        #{f0813,jdbcType=VARCHAR},
+      </if>
+      <if test="f0814 != null" >
+        #{f0814,jdbcType=VARCHAR},
+      </if>
+      <if test="f0815 != null" >
+        #{f0815,jdbcType=VARCHAR},
+      </if>
+      <if test="f0816 != null" >
+        #{f0816,jdbcType=VARCHAR},
+      </if>
+      <if test="f0817 != null" >
+        #{f0817,jdbcType=VARCHAR},
+      </if>
+      <if test="f0818 != null" >
+        #{f0818,jdbcType=VARCHAR},
+      </if>
+      <if test="f0819 != null" >
+        #{f0819,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0820 != null" >
+        #{f0820,jdbcType=VARCHAR},
+      </if>
+      <if test="f1101 != null" >
+        #{f1101,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T08" >
+    update T08
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0802 != null" >
+        F0802 = #{f0802,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0803 != null" >
+        F0803 = #{f0803,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0804 != null" >
+        F0804 = #{f0804,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0805 != null" >
+        F0805 = #{f0805,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0806 != null" >
+        F0806 = #{f0806,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0807 != null" >
+        F0807 = #{f0807,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0808 != null" >
+        F0808 = #{f0808,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0809 != null" >
+        F0809 = #{f0809,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0810 != null" >
+        F0810 = #{f0810,jdbcType=INTEGER},
+      </if>
+      <if test="f0811 != null" >
+        F0811 = #{f0811,jdbcType=DATE},
+      </if>
+      <if test="f0812 != null" >
+        F0812 = #{f0812,jdbcType=DATE},
+      </if>
+      <if test="f0813 != null" >
+        F0813 = #{f0813,jdbcType=VARCHAR},
+      </if>
+      <if test="f0814 != null" >
+        F0814 = #{f0814,jdbcType=VARCHAR},
+      </if>
+      <if test="f0815 != null" >
+        F0815 = #{f0815,jdbcType=VARCHAR},
+      </if>
+      <if test="f0816 != null" >
+        F0816 = #{f0816,jdbcType=VARCHAR},
+      </if>
+      <if test="f0817 != null" >
+        F0817 = #{f0817,jdbcType=VARCHAR},
+      </if>
+      <if test="f0818 != null" >
+        F0818 = #{f0818,jdbcType=VARCHAR},
+      </if>
+      <if test="f0819 != null" >
+        F0819 = #{f0819,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0820 != null" >
+        F0820 = #{f0820,jdbcType=VARCHAR},
+      </if>
+      <if test="f1101 != null" >
+        F1101 = #{f1101,jdbcType=INTEGER},
+      </if>
+    </set>
+    where F0801 = #{f0801,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T08" >
+    update T08
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F0802 = #{f0802,jdbcType=NVARCHAR},
+      F0803 = #{f0803,jdbcType=NVARCHAR},
+      F0804 = #{f0804,jdbcType=NVARCHAR},
+      F0805 = #{f0805,jdbcType=NVARCHAR},
+      F0806 = #{f0806,jdbcType=NVARCHAR},
+      F0807 = #{f0807,jdbcType=NVARCHAR},
+      F0808 = #{f0808,jdbcType=NVARCHAR},
+      F0809 = #{f0809,jdbcType=NVARCHAR},
+      F0810 = #{f0810,jdbcType=INTEGER},
+      F0811 = #{f0811,jdbcType=DATE},
+      F0812 = #{f0812,jdbcType=DATE},
+      F0813 = #{f0813,jdbcType=VARCHAR},
+      F0814 = #{f0814,jdbcType=VARCHAR},
+      F0815 = #{f0815,jdbcType=VARCHAR},
+      F0816 = #{f0816,jdbcType=VARCHAR},
+      F0817 = #{f0817,jdbcType=VARCHAR},
+      F0818 = #{f0818,jdbcType=VARCHAR},
+      F0819 = #{f0819,jdbcType=NVARCHAR},
+      F0820 = #{f0820,jdbcType=VARCHAR},
+      F1101 = #{f1101,jdbcType=INTEGER}
+    where F0801 = #{f0801,jdbcType=INTEGER}
+  </update>
+</mapper>

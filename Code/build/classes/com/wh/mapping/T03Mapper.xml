@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T03Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T03" >
+    <id column="F0301" property="f0301" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F0302" property="f0302" jdbcType="VARCHAR" />
+    <result column="F0303" property="f0303" jdbcType="VARCHAR" />
+    <result column="F0304" property="f0304" jdbcType="VARCHAR" />
+    <result column="F0305" property="f0305" jdbcType="DATE" />
+    <result column="F0306" property="f0306" jdbcType="VARCHAR" />
+    <result column="F0307" property="f0307" jdbcType="VARCHAR" />
+    <result column="F0308" property="f0308" jdbcType="VARCHAR" />
+    <result column="F0309" property="f0309" jdbcType="VARCHAR" />
+    <result column="F0310" property="f0310" jdbcType="DATE" />
+    <result column="F0311" property="f0311" jdbcType="VARCHAR" />
+    <result column="F0312" property="f0312" jdbcType="VARCHAR" />
+    <result column="F0313" property="f0313" jdbcType="VARCHAR" />
+    <result column="F0314" property="f0314" jdbcType="VARCHAR" />
+    <result column="F0315" property="f0315" jdbcType="VARCHAR" />
+    <association property="t01" column="F0101" 
+    		javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey">
+     </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0301, F0101, F0302, F0303, F0304, F0305, F0306, F0307, F0308, F0309, F0310, F0311, 
+    F0312, F0313, F0314, F0315
+  </sql>
+  
+  
+  <select id="selectAllT03" resultMap="BaseResultMap" >
+  	 select 
+    <include refid="Base_Column_List" />
+    from T03   where F0315 = '未过期'	    order by F0301  desc
+  </select>
+  
+  <select id="selectAllT03ByCompany" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	 	select 
+    <include refid="Base_Column_List" />
+    	from T03
+    	where F0101 = #{f0101,jdbcType=INTEGER} and F0315 = '未过期'
+    			    order by F0301  desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T03
+    where F0301 = #{f0301,jdbcType=INTEGER}
+    		    order by F0301  desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T03
+    where F0301 = #{f0301,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T03" >
+    insert into T03 (F0301, F0101, F0302, 
+      F0303, F0304, F0305, F0306, 
+      F0307, F0308, F0309, 
+      F0310, F0311, F0312, F0313, 
+      F0314, F0315)
+    values (#{f0301,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f0302,jdbcType=VARCHAR}, 
+      #{f0303,jdbcType=VARCHAR}, #{f0304,jdbcType=VARCHAR}, #{f0305,jdbcType=DATE}, #{f0306,jdbcType=VARCHAR}, 
+      #{f0307,jdbcType=VARCHAR}, #{f0308,jdbcType=VARCHAR}, #{f0309,jdbcType=VARCHAR}, 
+      #{f0310,jdbcType=DATE}, #{f0311,jdbcType=VARCHAR}, #{f0312,jdbcType=VARCHAR}, #{f0313,jdbcType=VARCHAR}, 
+      #{f0314,jdbcType=VARCHAR}, #{f0315,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T03" >
+    insert into T03
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0301 != null" >
+        F0301,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f0302 != null" >
+        F0302,
+      </if>
+      <if test="f0303 != null" >
+        F0303,
+      </if>
+      <if test="f0304 != null" >
+        F0304,
+      </if>
+      <if test="f0305 != null" >
+        F0305,
+      </if>
+      <if test="f0306 != null" >
+        F0306,
+      </if>
+      <if test="f0307 != null" >
+        F0307,
+      </if>
+      <if test="f0308 != null" >
+        F0308,
+      </if>
+      <if test="f0309 != null" >
+        F0309,
+      </if>
+      <if test="f0310 != null" >
+        F0310,
+      </if>
+      <if test="f0311 != null" >
+        F0311,
+      </if>
+      <if test="f0312 != null" >
+        F0312,
+      </if>
+      <if test="f0313 != null" >
+        F0313,
+      </if>
+      <if test="f0314 != null" >
+        F0314,
+      </if>
+      <if test="f0315 != null" >
+        F0315,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0301 != null" >
+        #{f0301,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0302 != null" >
+        #{f0302,jdbcType=VARCHAR},
+      </if>
+      <if test="f0303 != null" >
+        #{f0303,jdbcType=VARCHAR},
+      </if>
+      <if test="f0304 != null" >
+        #{f0304,jdbcType=VARCHAR},
+      </if>
+      <if test="f0305 != null" >
+        #{f0305,jdbcType=DATE},
+      </if>
+      <if test="f0306 != null" >
+        #{f0306,jdbcType=VARCHAR},
+      </if>
+      <if test="f0307 != null" >
+        #{f0307,jdbcType=VARCHAR},
+      </if>
+      <if test="f0308 != null" >
+        #{f0308,jdbcType=VARCHAR},
+      </if>
+      <if test="f0309 != null" >
+        #{f0309,jdbcType=VARCHAR},
+      </if>
+      <if test="f0310 != null" >
+        #{f0310,jdbcType=DATE},
+      </if>
+      <if test="f0311 != null" >
+        #{f0311,jdbcType=VARCHAR},
+      </if>
+      <if test="f0312 != null" >
+        #{f0312,jdbcType=VARCHAR},
+      </if>
+      <if test="f0313 != null" >
+        #{f0313,jdbcType=VARCHAR},
+      </if>
+      <if test="f0314 != null" >
+        #{f0314,jdbcType=VARCHAR},
+      </if>
+      <if test="f0315 != null" >
+        #{f0315,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T03" >
+    update T03
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0302 != null" >
+        F0302 = #{f0302,jdbcType=VARCHAR},
+      </if>
+      <if test="f0303 != null" >
+        F0303 = #{f0303,jdbcType=VARCHAR},
+      </if>
+      <if test="f0304 != null" >
+        F0304 = #{f0304,jdbcType=VARCHAR},
+      </if>
+      <if test="f0305 != null" >
+        F0305 = #{f0305,jdbcType=DATE},
+      </if>
+      <if test="f0306 != null" >
+        F0306 = #{f0306,jdbcType=VARCHAR},
+      </if>
+      <if test="f0307 != null" >
+        F0307 = #{f0307,jdbcType=VARCHAR},
+      </if>
+      <if test="f0308 != null" >
+        F0308 = #{f0308,jdbcType=VARCHAR},
+      </if>
+      <if test="f0309 != null" >
+        F0309 = #{f0309,jdbcType=VARCHAR},
+      </if>
+      <if test="f0310 != null" >
+        F0310 = #{f0310,jdbcType=DATE},
+      </if>
+      <if test="f0311 != null" >
+        F0311 = #{f0311,jdbcType=VARCHAR},
+      </if>
+      <if test="f0312 != null" >
+        F0312 = #{f0312,jdbcType=VARCHAR},
+      </if>
+      <if test="f0313 != null" >
+        F0313 = #{f0313,jdbcType=VARCHAR},
+      </if>
+      <if test="f0314 != null" >
+        F0314 = #{f0314,jdbcType=VARCHAR},
+      </if>
+      <if test="f0315 != null" >
+        F0315 = #{f0315,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F0301 = #{f0301,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T03" >
+    update T03
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F0302 = #{f0302,jdbcType=VARCHAR},
+      F0303 = #{f0303,jdbcType=VARCHAR},
+      F0304 = #{f0304,jdbcType=VARCHAR},
+      F0305 = #{f0305,jdbcType=DATE},
+      F0306 = #{f0306,jdbcType=VARCHAR},
+      F0307 = #{f0307,jdbcType=VARCHAR},
+      F0308 = #{f0308,jdbcType=VARCHAR},
+      F0309 = #{f0309,jdbcType=VARCHAR},
+      F0310 = #{f0310,jdbcType=DATE},
+      F0311 = #{f0311,jdbcType=VARCHAR},
+      F0312 = #{f0312,jdbcType=VARCHAR},
+      F0313 = #{f0313,jdbcType=VARCHAR},
+      F0314 = #{f0314,jdbcType=VARCHAR},
+      F0315 = #{f0315,jdbcType=VARCHAR}
+    where F0301 = #{f0301,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateEquipment" parameterType="com.wh.model.T03" >
+  	     update T03
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0302 != null" >
+        F0302 = #{f0302,jdbcType=VARCHAR},
+      </if>
+      <if test="f0303 != null" >
+        F0303 = #{f0303,jdbcType=VARCHAR},
+      </if>
+      <if test="f0304 != null" >
+        F0304 = #{f0304,jdbcType=VARCHAR},
+      </if>
+      <if test="f0305 != null" >
+        F0305 = #{f0305,jdbcType=DATE},
+      </if>
+      <if test="f0306 != null" >
+        F0306 = #{f0306,jdbcType=VARCHAR},
+      </if>
+      <if test="f0307 != null" >
+        F0307 = #{f0307,jdbcType=VARCHAR},
+      </if>
+      <if test="f0308 != null" >
+        F0308 = #{f0308,jdbcType=VARCHAR},
+      </if>
+      <if test="f0309 != null" >
+        F0309 = #{f0309,jdbcType=VARCHAR},
+      </if>
+      <if test="f0310 != null" >
+        F0310 = #{f0310,jdbcType=DATE},
+      </if>
+      <if test="f0311 != null" >
+        F0311 = #{f0311,jdbcType=VARCHAR},
+      </if>
+      <if test="f0312 != null" >
+        F0312 = #{f0312,jdbcType=VARCHAR},
+      </if>
+      <if test="f0313 != null" >
+        F0313 = #{f0313,jdbcType=VARCHAR},
+      </if>
+      <if test="f0314 != null" >
+        F0314 = #{f0314,jdbcType=VARCHAR},
+      </if>
+      <if test="f0315 != null" >
+        F0315 = #{f0315,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F0301 = #{f0301,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T04Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T04" >
+    <id column="F0401" property="f0401" jdbcType="INTEGER" />
+    <result column="F0301" property="f0301" jdbcType="INTEGER" />
+    <result column="F0402" property="f0402" jdbcType="VARCHAR" />
+    <result column="F0403" property="f0403" jdbcType="DATE" />
+    <result column="F0404" property="f0404" jdbcType="VARCHAR" />
+    <result column="F0405" property="f0405" jdbcType="VARCHAR" />
+    <result column="F0406" property="f0406" jdbcType="VARCHAR" />
+    <result column="F0407" property="f0407" jdbcType="DATE" />
+    <result column="F0408" property="f0408" jdbcType="VARCHAR" />
+    <association property="t03" column="F0301" 
+    	javaType="com.wh.model.T03" select="com.wh.dao.T03Mapper.selectByPrimaryKey">
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0401, F0301, F0402, F0403, F0404, F0405, F0406, F0407, F0408
+  </sql>
+  	
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List"  />
+    from T04
+    where F0401 = #{f0401,jdbcType=INTEGER}	order by F0401 desc
+  </select>
+  
+  <select id="findAllCheckInfoByE" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List"  />
+    from T04 where F0301 = #{f0301,jdbcType=INTEGER}
+    order by F0401 desc
+  </select>
+  
+  <select id="seleteAllCheckInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List"  />
+    from T04	order by F0401 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T04
+    where F0401 = #{f0401,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T04">
+    insert into T04 (F0401, F0301, F0402, 
+      F0403, F0404, F0405, F0406, 
+      F0407, F0408)
+    values (#{f0401,jdbcType=INTEGER}, #{f0301,jdbcType=INTEGER}, #{f0402,jdbcType=VARCHAR}, 
+      #{f0403,jdbcType=DATE}, #{f0404,jdbcType=VARCHAR}, #{f0405,jdbcType=VARCHAR}, #{f0406,jdbcType=VARCHAR}, 
+      #{f0407,jdbcType=DATE}, #{f0408,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T04" useGeneratedKeys="true" keyProperty="f0401">
+    insert into T04
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0401 != null" >
+        F0401,
+      </if>
+      <if test="f0301 != null" >
+        F0301,
+      </if>
+      <if test="f0402 != null" >
+        F0402,
+      </if>
+      <if test="f0403 != null" >
+        F0403,
+      </if>
+      <if test="f0404 != null" >
+        F0404,
+      </if>
+      <if test="f0405 != null" >
+        F0405,
+      </if>
+      <if test="f0406 != null" >
+        F0406,
+      </if>
+      <if test="f0407 != null" >
+        F0407,
+      </if>
+      <if test="f0408 != null" >
+        F0408,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0401 != null" >
+        #{f0401,jdbcType=INTEGER},
+      </if>
+      <if test="f0301 != null" >
+        #{f0301,jdbcType=INTEGER},
+      </if>
+      <if test="f0402 != null" >
+        #{f0402,jdbcType=VARCHAR},
+      </if>
+      <if test="f0403 != null" >
+        #{f0403,jdbcType=DATE},
+      </if>
+      <if test="f0404 != null" >
+        #{f0404,jdbcType=VARCHAR},
+      </if>
+      <if test="f0405 != null" >
+        #{f0405,jdbcType=VARCHAR},
+      </if>
+      <if test="f0406 != null" >
+        #{f0406,jdbcType=VARCHAR},
+      </if>
+      <if test="f0407 != null" >
+        #{f0407,jdbcType=DATE},
+      </if>
+      <if test="f0408 != null" >
+        #{f0408,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T04" >
+    update T04
+    <set >
+      <if test="f0301 != null" >
+        F0301 = #{f0301,jdbcType=INTEGER},
+      </if>
+      <if test="f0402 != null" >
+        F0402 = #{f0402,jdbcType=VARCHAR},
+      </if>
+      <if test="f0403 != null" >
+        F0403 = #{f0403,jdbcType=DATE},
+      </if>
+      <if test="f0404 != null" >
+        F0404 = #{f0404,jdbcType=VARCHAR},
+      </if>
+      <if test="f0405 != null" >
+        F0405 = #{f0405,jdbcType=VARCHAR},
+      </if>
+      <if test="f0406 != null" >
+        F0406 = #{f0406,jdbcType=VARCHAR},
+      </if>
+      <if test="f0407 != null" >
+        F0407 = #{f0407,jdbcType=DATE},
+      </if>
+      <if test="f0408 != null" >
+        F0408 = #{f0408,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F0401 = #{f0401,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T04" >
+    update T04
+    set F0301 = #{f0301,jdbcType=INTEGER},
+      F0402 = #{f0402,jdbcType=VARCHAR},
+      F0403 = #{f0403,jdbcType=DATE},
+      F0404 = #{f0404,jdbcType=VARCHAR},
+      F0405 = #{f0405,jdbcType=VARCHAR},
+      F0406 = #{f0406,jdbcType=VARCHAR},
+      F0407 = #{f0407,jdbcType=DATE},
+      F0408 = #{f0408,jdbcType=VARCHAR}
+    where F0401 = #{f0401,jdbcType=INTEGER}
+  </update>
+</mapper>

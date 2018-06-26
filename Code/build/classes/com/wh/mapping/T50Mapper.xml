@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T50Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T50" >
+    <id column="F5001" property="f5001" jdbcType="INTEGER" />
+    <result column="F5002" property="f5002" jdbcType="NVARCHAR" />
+    <result column="F5003" property="f5003" jdbcType="NVARCHAR" />
+    <result column="F5004" property="f5004" jdbcType="NVARCHAR" />
+    <result column="F5005" property="f5005" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F5001, F5002, F5003, F5004, F5005
+  </sql>
+  
+  <select id="getTime07" resultMap="BaseResultMap">
+      select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5004 = 'time07'
+  </select>
+  
+  <select id="getTime08" resultMap="BaseResultMap">
+      select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5004 = 'time08'
+  </select>
+  
+  <select id="getTime03" resultMap="BaseResultMap">
+      select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5004 = 'time03'
+  </select>
+  
+  <select id="getTips1" resultMap="BaseResultMap">
+                  select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5004 = '提前提醒1'
+  </select>
+    <select id="getTips2" resultMap="BaseResultMap">
+                  select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5004 = '提前提醒2'
+  </select>
+    <select id="getTips3" resultMap="BaseResultMap">
+                  select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5004 = '提前提醒3'
+  </select>
+  
+  <select id="selectT50ByToday" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5002 = #{f5002,jdbcType=NVARCHAR}	order by F5001 desc
+  </select>
+  
+  <select id="selectF5005" resultMap="BaseResultMap" parameterType="java.lang.String">
+            select
+      	<include refid="Base_Column_List" />
+      from T50
+      where F5005 = #{f5005,jdbcType=NVARCHAR} and F5004 = 'image'
+  </select>
+  
+  <select id="selectAllT50" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+        from T50 	order by F5001 desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T50
+    where F5001 = #{f5001,jdbcType=INTEGER}	order by F5001 desc
+  </select>
+  <delete id="deleteT50" parameterType="java.lang.String">
+    delete from T50
+    where F5002 = #{f5002,jdbcType=NVARCHAR}
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T50
+    where F5001 = #{f5001,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T50" useGeneratedKeys="true" keyProperty="f5001">
+    insert into T50 (F5001, F5002, F5003, 
+      F5004, F5005)
+    values (#{f5001,jdbcType=INTEGER}, #{f5002,jdbcType=NVARCHAR}, #{f5003,jdbcType=NVARCHAR}, 
+      #{f5004,jdbcType=NVARCHAR}, #{f5005,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T50" useGeneratedKeys="true" keyProperty="f5001">
+    insert into T50
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f5001 != null" >
+        F5001,
+      </if>
+      <if test="f5002 != null" >
+        F5002,
+      </if>
+      <if test="f5003 != null" >
+        F5003,
+      </if>
+      <if test="f5004 != null" >
+        F5004,
+      </if>
+      <if test="f5005 != null" >
+        F5005,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f5001 != null" >
+        #{f5001,jdbcType=INTEGER},
+      </if>
+      <if test="f5002 != null" >
+        #{f5002,jdbcType=NVARCHAR},
+      </if>
+      <if test="f5003 != null" >
+        #{f5003,jdbcType=NVARCHAR},
+      </if>
+      <if test="f5004 != null" >
+        #{f5004,jdbcType=NVARCHAR},
+      </if>
+      <if test="f5005 != null" >
+        #{f5005,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T50" >
+    update T50
+    <set >
+      <if test="f5002 != null" >
+        F5002 = #{f5002,jdbcType=NVARCHAR},
+      </if>
+      <if test="f5003 != null" >
+        F5003 = #{f5003,jdbcType=NVARCHAR},
+      </if>
+      <if test="f5004 != null" >
+        F5004 = #{f5004,jdbcType=NVARCHAR},
+      </if>
+      <if test="f5005 != null" >
+        F5005 = #{f5005,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where F5001 = #{f5001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T50" >
+    update T50
+    set F5002 = #{f5002,jdbcType=NVARCHAR},
+      F5003 = #{f5003,jdbcType=NVARCHAR},
+      F5004 = #{f5004,jdbcType=NVARCHAR},
+      F5005 = #{f5005,jdbcType=NVARCHAR}
+    where F5001 = #{f5001,jdbcType=INTEGER}
+  </update>
+</mapper>

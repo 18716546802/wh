@@ -1,0 +1,17 @@
+body{
+	padding:0;
+}
+
+.myMenu, .myMenu  span{
+	font-size:13px;
+	padding-left:0;
+	float:none;
+}
+
+.company{
+	height: auto;
+    line-height: auto;
+    float: none;
+    padding-left:0px;
+    font-size: 13px;   
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T02Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T02" >
+    <id column="F0201" property="f0201" jdbcType="INTEGER" />
+    <result column="F0202" property="f0202" jdbcType="VARCHAR" />
+    <result column="F0203" property="f0203" jdbcType="VARCHAR" />
+    <result column="F0204" property="f0204" jdbcType="VARCHAR" />
+    <result column="F0205" property="f0205" jdbcType="VARCHAR" />
+    <result column="F0206" property="f0206" jdbcType="VARCHAR" />
+    <result column="F0207" property="f0207" jdbcType="VARCHAR" />
+    <result column="F0208" property="f0208" jdbcType="VARCHAR" />
+    <result column="F0209" property="f0209" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    F0201, F0202, F0203, F0204, F0205, F0206, F0207, F0208, F0209
+  </sql>
+  <select id="userLogin" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select <include refid="Base_Column_List" /> from T02 where f0202 = #{0} and f0203 = #{1}
+          order by F0201  desc
+  </select>
+  
+  <select id="getT02" resultMap="BaseResultMap"  parameterType="java.lang.String">
+      select <include refid="Base_Column_List" /> from T02 where F0205 = #{f0205,jdbcType=VARCHAR}
+  		    order by F0201  desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T02
+    where F0201 = #{f0201,jdbcType=INTEGER}  		    order by F0201  desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T02
+    where F0201 = #{f0201,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T02" >
+    insert into T02 (F0201, F0202, F0203, 
+      F0204, F0205, F0206, 
+      F0207, F0208, F0209
+      )
+    values (#{f0201,jdbcType=INTEGER}, #{f0202,jdbcType=VARCHAR}, #{f0203,jdbcType=VARCHAR}, 
+      #{f0204,jdbcType=VARCHAR}, #{f0205,jdbcType=VARCHAR}, #{f0206,jdbcType=VARCHAR}, 
+      #{f0207,jdbcType=VARCHAR}, #{f0208,jdbcType=VARCHAR}, #{f0209,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T02" >
+    insert into T02
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0201 != null" >
+        F0201,
+      </if>
+      <if test="f0202 != null" >
+        F0202,
+      </if>
+      <if test="f0203 != null" >
+        F0203,
+      </if>
+      <if test="f0204 != null" >
+        F0204,
+      </if>
+      <if test="f0205 != null" >
+        F0205,
+      </if>
+      <if test="f0206 != null" >
+        F0206,
+      </if>
+      <if test="f0207 != null" >
+        F0207,
+      </if>
+      <if test="f0208 != null" >
+        F0208,
+      </if>
+      <if test="f0209 != null" >
+        F0209,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0201 != null" >
+        #{f0201,jdbcType=INTEGER},
+      </if>
+      <if test="f0202 != null" >
+        #{f0202,jdbcType=VARCHAR},
+      </if>
+      <if test="f0203 != null" >
+        #{f0203,jdbcType=VARCHAR},
+      </if>
+      <if test="f0204 != null" >
+        #{f0204,jdbcType=VARCHAR},
+      </if>
+      <if test="f0205 != null" >
+        #{f0205,jdbcType=VARCHAR},
+      </if>
+      <if test="f0206 != null" >
+        #{f0206,jdbcType=VARCHAR},
+      </if>
+      <if test="f0207 != null" >
+        #{f0207,jdbcType=VARCHAR},
+      </if>
+      <if test="f0208 != null" >
+        #{f0208,jdbcType=VARCHAR},
+      </if>
+      <if test="f0209 != null" >
+        #{f0209,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T02" >
+    update T02
+    <set >
+      <if test="f0202 != null" >
+        F0202 = #{f0202,jdbcType=VARCHAR},
+      </if>
+      <if test="f0203 != null" >
+        F0203 = #{f0203,jdbcType=VARCHAR},
+      </if>
+      <if test="f0204 != null" >
+        F0204 = #{f0204,jdbcType=VARCHAR},
+      </if>
+      <if test="f0205 != null" >
+        F0205 = #{f0205,jdbcType=VARCHAR},
+      </if>
+      <if test="f0206 != null" >
+        F0206 = #{f0206,jdbcType=VARCHAR},
+      </if>
+      <if test="f0207 != null" >
+        F0207 = #{f0207,jdbcType=VARCHAR},
+      </if>
+      <if test="f0208 != null" >
+        F0208 = #{f0208,jdbcType=VARCHAR},
+      </if>
+      <if test="f0209 != null" >
+        F0209 = #{f0209,jdbcType=INTEGER},
+      </if>
+    </set>
+    where F0201 = #{f0201,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T02" >
+    update T02
+    set F0202 = #{f0202,jdbcType=VARCHAR},
+      F0203 = #{f0203,jdbcType=VARCHAR},
+      F0204 = #{f0204,jdbcType=VARCHAR},
+      F0205 = #{f0205,jdbcType=VARCHAR},
+      F0206 = #{f0206,jdbcType=VARCHAR},
+      F0207 = #{f0207,jdbcType=VARCHAR},
+      F0208 = #{f0208,jdbcType=VARCHAR},
+      F0209 = #{f0209,jdbcType=INTEGER}
+    where F0201 = #{f0201,jdbcType=INTEGER}
+  </update>
+</mapper>

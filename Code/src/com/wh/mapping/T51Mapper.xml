@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T51Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T51" >
+    <id column="F5101" property="f5101" jdbcType="INTEGER" />
+    <result column="F5102" property="f5102" jdbcType="TIMESTAMP" />
+    <result column="F5103" property="f5103" jdbcType="VARCHAR" />
+    <result column="F5104" property="f5104" jdbcType="VARCHAR" />
+    <result column="F5105" property="f5105" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F5101, F5102, F5103, F5104, F5105
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T51	
+    where F5101 = #{f5101,jdbcType=INTEGER}	order by F5101 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T51
+    where F5101 = #{f5101,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T51" >
+    insert into T51 (F5101, F5102, F5103, 
+      F5104, F5105)
+    values (#{f5101,jdbcType=INTEGER}, #{f5102,jdbcType=TIMESTAMP}, #{f5103,jdbcType=VARCHAR}, 
+      #{f5104,jdbcType=VARCHAR}, #{f5105,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T51" >
+    insert into T51
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f5101 != null" >
+        F5101,
+      </if>
+      <if test="f5102 != null" >
+        F5102,
+      </if>
+      <if test="f5103 != null" >
+        F5103,
+      </if>
+      <if test="f5104 != null" >
+        F5104,
+      </if>
+      <if test="f5105 != null" >
+        F5105,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f5101 != null" >
+        #{f5101,jdbcType=INTEGER},
+      </if>
+      <if test="f5102 != null" >
+        #{f5102,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f5103 != null" >
+        #{f5103,jdbcType=VARCHAR},
+      </if>
+      <if test="f5104 != null" >
+        #{f5104,jdbcType=VARCHAR},
+      </if>
+      <if test="f5105 != null" >
+        #{f5105,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T51" >
+    update T51
+    <set >
+      <if test="f5102 != null" >
+        F5102 = #{f5102,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f5103 != null" >
+        F5103 = #{f5103,jdbcType=VARCHAR},
+      </if>
+      <if test="f5104 != null" >
+        F5104 = #{f5104,jdbcType=VARCHAR},
+      </if>
+      <if test="f5105 != null" >
+        F5105 = #{f5105,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F5101 = #{f5101,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T51" >
+    update T51
+    set F5102 = #{f5102,jdbcType=TIMESTAMP},
+      F5103 = #{f5103,jdbcType=VARCHAR},
+      F5104 = #{f5104,jdbcType=VARCHAR},
+      F5105 = #{f5105,jdbcType=VARCHAR}
+    where F5101 = #{f5101,jdbcType=INTEGER}
+  </update>
+</mapper>

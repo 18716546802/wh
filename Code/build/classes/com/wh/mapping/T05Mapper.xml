@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T05Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T05" >
+    <id column="F0501" property="f0501" jdbcType="INTEGER" />
+    <result column="F0101" property="f0101" jdbcType="INTEGER" />
+    <result column="F0502" property="f0502" jdbcType="VARCHAR" />
+    <result column="F0503" property="f0503" jdbcType="VARCHAR" />
+    <result column="F0504" property="f0504" jdbcType="DATE" />
+    <result column="F0505" property="f0505" jdbcType="VARCHAR" />
+    <association property="t01" column="F0101" 
+    	javaType="com.wh.model.T01" select="com.wh.dao.T01Mapper.selectByPrimaryKey" >
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0501, F0101, F0502, F0503, F0504, F0505
+  </sql>
+  
+  <select id="selectT05Byf0101" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+      select <include refid="Base_Column_List" />
+      from T05 
+      where f0101 = #{f0101,jdbcType=INTEGER}	order by F0501 desc
+  </select>
+  
+  <select id="selectT05" resultMap="BaseResultMap" >
+      select <include refid="Base_Column_List" />
+      from T05 	order by F0501 desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T05
+    where F0501 = #{f0501,jdbcType=INTEGER}	order by F0501 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T05
+    where F0501 = #{f0501,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T05" useGeneratedKeys="true" keyProperty="f0501" >
+    insert into T05 (F0501, F0101, F0502, 
+      F0503, F0504, F0505)
+    values (#{f0501,jdbcType=INTEGER}, #{f0101,jdbcType=INTEGER}, #{f0502,jdbcType=VARCHAR}, 
+      #{f0503,jdbcType=VARCHAR}, #{f0504,jdbcType=DATE}, #{f0505,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T05" useGeneratedKeys="true" keyProperty="f0501" >
+    insert into T05
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0501 != null" >
+        F0501,
+      </if>
+      <if test="f0101 != null" >
+        F0101,
+      </if>
+      <if test="f0502 != null" >
+        F0502,
+      </if>
+      <if test="f0503 != null" >
+        F0503,
+      </if>
+      <if test="f0504 != null" >
+        F0504,
+      </if>
+      <if test="f0505 != null" >
+        F0505,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0501 != null" >
+        #{f0501,jdbcType=INTEGER},
+      </if>
+      <if test="f0101 != null" >
+        #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0502 != null" >
+        #{f0502,jdbcType=VARCHAR},
+      </if>
+      <if test="f0503 != null" >
+        #{f0503,jdbcType=VARCHAR},
+      </if>
+      <if test="f0504 != null" >
+        #{f0504,jdbcType=DATE},
+      </if>
+      <if test="f0505 != null" >
+        #{f0505,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T05" >
+    update T05
+    <set >
+      <if test="f0101 != null" >
+        F0101 = #{f0101,jdbcType=INTEGER},
+      </if>
+      <if test="f0502 != null" >
+        F0502 = #{f0502,jdbcType=VARCHAR},
+      </if>
+      <if test="f0503 != null" >
+        F0503 = #{f0503,jdbcType=VARCHAR},
+      </if>
+      <if test="f0504 != null" >
+        F0504 = #{f0504,jdbcType=DATE},
+      </if>
+      <if test="f0505 != null" >
+        F0505 = #{f0505,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F0501 = #{f0501,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T05" >
+    update T05
+    set F0101 = #{f0101,jdbcType=INTEGER},
+      F0502 = #{f0502,jdbcType=VARCHAR},
+      F0503 = #{f0503,jdbcType=VARCHAR},
+      F0504 = #{f0504,jdbcType=DATE},
+      F0505 = #{f0505,jdbcType=VARCHAR}
+    where F0501 = #{f0501,jdbcType=INTEGER}
+  </update>
+</mapper>

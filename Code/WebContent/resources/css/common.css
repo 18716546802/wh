@@ -1,0 +1,43 @@
+.ui-jqgrid .ui-jqgrid-htable th{
+	text-align: center!important;
+}
+.ui-jqgrid-view>.ui-jqgrid-titlebar {
+	
+	 font-size: 15px;
+}
+.ui-jqgrid .ui-jqgrid-titlebar-close{
+ 	
+ 	word-break:;
+}
+
+
+.title{
+	border-bottom:1px solid #e5e5e5;
+	background-color:#f5f5f5;
+	min-height:41px;
+	line-height:40px;
+	padding:0 12px 0 0;
+	display:block;
+}
+ 
+
+/*jqGrid 标题换行*/
+.ui-jqgrid tr.jqgrow td 
+{
+/* jqGrid cell content wrap  */
+ white-space: normal !important;
+  height :auto;
+  word-break:break-all;
+}
+th.ui-th-column div
+{
+	/* jqGrid columns name wrap  */
+	white-space:normal !important;
+	height:auto !important;
+	padding:0px;
+}
+  	
+	
+    		
+   
+    

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.dao.T06Mapper" >
+  <resultMap id="BaseResultMap" type="com.wh.model.T06" >
+    <id column="F0601" property="f0601" jdbcType="INTEGER" />
+    <result column="F0602" property="f0602" jdbcType="NVARCHAR" />
+    <result column="F0603" property="f0603" jdbcType="INTEGER" />
+    <result column="F0604" property="f0604" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F0601, F0602, F0603, F0604
+  </sql>
+  
+  <delete id="deleteT06By1LTree" parameterType="java.lang.Integer">
+      delete from T06 where F0603 = #{f0601,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="selectMenuTree" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"></include> from T06	order by F0601 desc
+  </select>
+  
+  <select id="getF0601" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  		select F0601 from dbo.T06 where F0602 = '未分区'
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T06
+    where F0601 = #{f0601,jdbcType=INTEGER}	order by F0601 desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T06
+    where F0601 = #{f0601,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wh.model.T06" >
+    insert into T06 (F0601, F0602, F0603, 
+      F0604)
+    values (#{f0601,jdbcType=INTEGER}, #{f0602,jdbcType=NVARCHAR}, #{f0603,jdbcType=INTEGER}, 
+      #{f0604,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wh.model.T06" >
+    insert into T06
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f0601 != null" >
+        F0601,
+      </if>
+      <if test="f0602 != null" >
+        F0602,
+      </if>
+      <if test="f0603 != null" >
+        F0603,
+      </if>
+      <if test="f0604 != null" >
+        F0604,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f0601 != null" >
+        #{f0601,jdbcType=INTEGER},
+      </if>
+      <if test="f0602 != null" >
+        #{f0602,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0603 != null" >
+        #{f0603,jdbcType=INTEGER},
+      </if>
+      <if test="f0604 != null" >
+        #{f0604,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wh.model.T06" >
+    update T06
+    <set >
+      <if test="f0602 != null" >
+        F0602 = #{f0602,jdbcType=NVARCHAR},
+      </if>
+      <if test="f0603 != null" >
+        F0603 = #{f0603,jdbcType=INTEGER},
+      </if>
+      <if test="f0604 != null" >
+        F0604 = #{f0604,jdbcType=INTEGER},
+      </if>
+    </set>
+    where F0601 = #{f0601,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wh.model.T06" >
+    update T06
+    set F0602 = #{f0602,jdbcType=NVARCHAR},
+      F0603 = #{f0603,jdbcType=INTEGER},
+      F0604 = #{f0604,jdbcType=INTEGER}
+    where F0601 = #{f0601,jdbcType=INTEGER}
+  </update>
+</mapper>
